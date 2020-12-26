@@ -1,21 +1,25 @@
+import CustomCanvas from "./Canvas";
+import Matrix from "./Matrix";
+
 let tempScript = "";
 
-const canvas = new Canvas;
+const canvas = new CustomCanvas();
 
-document.getElementById("executeBtn").addEventListener("mousedown", (e) => {
-  const s = "ivar Matrix m, Matrix n;\nm.setSize(2, 2);\nm.setValue(0, 0, 1);\nm.setValue(0, 1, 7);\nm.setValue(1, 0, 14);\nconsole.log(m.getMatrix());\nn.setSize(2, 2);\nn.setValue(0, 1, 5);\nn.setValue(0, 0, 2);\nn.setValue(1, 0, -3);\nn.setValue(1, 1, 9);\nconsole.log(n.getMatrix());\nconsole.log(m.addMatrix(n).getMatrix());\nconsole.log(m.subtractMatrix(n).getMatrix());\nconsole.log(m.multiplyMatrixBySingle(10).getMatrix());"
-  const res = getRequiredBoxes(s);
-  console.log(res);
+// Sample Run
+// document.getElementById("executeBtn").addEventListener("mousedown", (e) => {
+//   const s = "ivar Matrix m, Matrix n;\nm.setSize(2, 2);\nm.setValue(0, 0, 1);\nm.setValue(0, 1, 7);\nm.setValue(1, 0, 14);\nconsole.log(m.getMatrix());\nn.setSize(2, 2);\nn.setValue(0, 1, 5);\nn.setValue(0, 0, 2);\nn.setValue(1, 0, -3);\nn.setValue(1, 1, 9);\nconsole.log(n.getMatrix());\nconsole.log(m.addMatrix(n).getMatrix());\nconsole.log(m.subtractMatrix(n).getMatrix());\nconsole.log(m.multiplyMatrixBySingle(10).getMatrix());"
+//   const res = getRequiredBoxes(s);
+//   console.log(res);
 
-  for (i = 0; i < res.len; i++) {
-    res.numberVariables[i] += "=1;";
-  }
+//   for (let i = 0; i < res.len; i++) {
+//     res.numberVariables[i] += "=1;";
+//   }
 
-  executeScript(res.numberVariables, res.tempScript);
-})
+//   executeScript(res.numberVariables, res.tempScript);
+// })
 
 // Returns the no. of input boxes required to be made, and the associated variables with each box
-function getRequiredBoxes(inputString) {
+export function getRequiredBoxes(inputString) {
   inputString.replace(/\n/g, " ");
   const numberVariables = [];
   let otherVariables = "";
@@ -29,11 +33,11 @@ function getRequiredBoxes(inputString) {
   firstLine = firstLine.trim();
 
 
-  if (firstLine.indexOf("ivar") == 0) {
+  if (firstLine.indexOf("ivar") === 0) {
     let allVariables = firstLine.substring(5).split(",");
 
-    for(i = 0; i < allVariables.length; i++) {
-      variable = allVariables[i];
+    for(let i = 0; i < allVariables.length; i++) {
+      let variable = allVariables[i];
 
       variable = variable.trim();
 
@@ -52,13 +56,13 @@ function getRequiredBoxes(inputString) {
 
     var secLineExists = false;
 
-    if (secondLine.indexOf("var") == 0) {
+    if (secondLine.indexOf("var") === 0) {
       secLineExists = true;
 
       let secondVariables = secondLine.substring(4).split(",");
 
-      for(i = 0; i < secondVariables.length; i++) {
-        variable = secondVariables[i];
+      for(let i = 0; i < secondVariables.length; i++) {
+        let variable = secondVariables[i];
 
         variable = variable.trim();
   
@@ -93,11 +97,11 @@ function getRequiredBoxes(inputString) {
 }
 
 // Function to execute the script
-function executeScript(inpVariables, script) {
+export function executeScript(inpVariables, script) {
   let temp = "";
 
-  for (i = 0; i < inpVariables.length; i++) {
-    str = inpVariables[i];
+  for (let i = 0; i < inpVariables.length; i++) {
+    let str = inpVariables[i];
     str = "const " + inpVariables[i] + "\n";
     temp += str;
   }
@@ -107,11 +111,12 @@ function executeScript(inpVariables, script) {
   validScript = temp + script;
   console.log(validScript);
 
+  // eslint-disable-next-line no-eval
   eval(validScript);
 }
 
 // The function to display the variable in the UI
-function show(x) {
+export function show(x) {
   if (x instanceof Matrix) {
     x.showMatrix(canvas);
   }

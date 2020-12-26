@@ -1,5 +1,8 @@
-class Canvas {
+//renamed as Canvas is conflicting with global Canvas class
+class CustomCanvas {
 
+
+  // eslint-disable-next-line no-useless-constructor
   constructor() {
     
   }
@@ -12,3 +15,5 @@ class Canvas {
 
   }
 }
+
+export default CustomCanvas;
