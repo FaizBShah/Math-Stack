@@ -14,6 +14,7 @@ document.getElementById("executeBtn").addEventListener("mousedown", (e) => {
   executeScript(res.numberVariables, res.tempScript);
 })
 
+// Returns the no. of input boxes required to be made, and the associated variables with each box
 function getRequiredBoxes(inputString) {
   inputString.replace(/\n/g, " ");
   const numberVariables = [];
@@ -91,6 +92,7 @@ function getRequiredBoxes(inputString) {
   }
 }
 
+// Function to execute the script
 function executeScript(inpVariables, script) {
   let temp = "";
 
@@ -108,6 +110,7 @@ function executeScript(inpVariables, script) {
   eval(validScript);
 }
 
+// The function to display the variable in the UI
 function show(x) {
   if (x instanceof Matrix) {
     x.showMatrix(canvas);
