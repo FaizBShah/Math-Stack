@@ -1,5 +1,5 @@
 import CustomCanvas from "./Canvas";
-import Matrix from "./Matrix";
+import { JMatrix } from "./test";
 
 let tempScript = "";
 
@@ -45,10 +45,10 @@ export function getRequiredBoxes(inputString) {
         numberVariables.push(variable);
       }
       else if (variable.indexOf("Matrix") !== -1) {
-        otherVariables += "const " + variable.split(" ")[1] + " = new Matrix;\n";
+        otherVariables += "const " + variable.split(" ")[1] + " = new JMatrix();\n";
       }
       else {
-        otherVariables += "const " + variable.split(" ")[1] + " = new Graph;\n";
+        otherVariables += "const " + variable.split(" ")[1] + " = new Graph();\n";
       }
     }
 
@@ -70,10 +70,10 @@ export function getRequiredBoxes(inputString) {
           otherVariables1 += "let " + variable + ";\n";
         }
         else if (variable.indexOf("Matrix") !== -1) {
-          otherVariables1 += "const " + variable.split(" ")[1] + " = new Matrix;\n";
+          otherVariables1 += "const " + variable.split(" ")[1] + " = new JMatrix();\n";
         }
         else {
-          otherVariables1 += "const " + variable.split(" ")[1] + " = new Graph;\n";
+          otherVariables1 += "const " + variable.split(" ")[1] + " = new Graph();\n";
         }
       }
     }
@@ -117,10 +117,33 @@ export function executeScript(inpVariables, script) {
 
 // The function to display the variable in the UI
 export function show(x) {
-  if (x instanceof Matrix) {
+  if (x instanceof JMatrix) {
     x.showMatrix(canvas);
   }
   else {
     canvas.showVariable(x);
   }
 }
+
+// const m = new Matrix();
+// let x;
+// let y;
+// let z;
+// let i;
+// let j;
+
+
+// x = 2;
+// y = x + 3;
+// z = x + 2*y;
+
+// m.setSize(4, 2);
+// for(i=0;i<4;i++) {
+// for(j=0;j<2;j++) {
+// m.setValue(i, j, i + j);
+// }
+// }
+
+// console.log(m.multiplyMatrixBySingle(x).getMatrix());
+// console.log(m.multiplyMatrixBySingle(y).getMatrix());
+// console.log(m.multiplyMatrixBySingle(z).getMatrix());
