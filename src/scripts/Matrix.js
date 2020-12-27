@@ -54,7 +54,7 @@ class Matrix {
       return null;
     }
 
-    const res = new Matrix;
+    const res = new Matrix();
 
     res.setSize(m.getRows(), m.getColumns());
 
@@ -75,7 +75,7 @@ class Matrix {
       return null;
     }
 
-    const res = new Matrix;
+    const res = new Matrix();
 
     res.setSize(m.getRows(), m.getColumns());
 
@@ -92,7 +92,7 @@ class Matrix {
 
   // Multiplies a single real value to the entire matrix
   multiplyMatrixBySingle(m) {
-    const res = new Matrix;
+    const res = new Matrix();
 
     res.setSize(this.getRows(), this.getColumns());
 
@@ -107,3 +107,5 @@ class Matrix {
     return res;
   }
 }
+
+export default Matrix;
