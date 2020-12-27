@@ -16,14 +16,14 @@ class Matrix {
 
   // Sets the value at the particular cell
   setValue(rowId, colId, value) {
-    if (rowId < this.matrix.length && colId < this.matrix[0].length) {
+    if (rowId < this.matrix.length && rowId > -1 && colId < this.matrix[0].length && colId > -1) {
       this.matrix[rowId][colId] = value;
     }
   }
 
   // Returns the value from the particular cell
   getValue(rowId, colId) {
-    if (rowId < this.matrix.length && colId < this.matrix[0].length) {
+    if (rowId < this.matrix.length && rowId > -1 && colId < this.matrix[0].length && colId > -1) {
       return this.matrix[rowId][colId];
     }
   }
