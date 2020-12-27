@@ -108,4 +108,5 @@ class Matrix {
   }
 }
 
+window.Matrix = Matrix;
 export default Matrix;
