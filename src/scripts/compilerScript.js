@@ -45,10 +45,10 @@ export function getRequiredBoxes(inputString) {
         numberVariables.push(variable);
       }
       else if (variable.indexOf("Matrix") !== -1) {
-        otherVariables += "const " + variable.split(" ")[1] + " = new Matrix;\n";
+        otherVariables += "const " + variable.split(" ")[1] + " = new Matrix();\n";
       }
       else {
-        otherVariables += "const " + variable.split(" ")[1] + " = new Graph;\n";
+        otherVariables += "const " + variable.split(" ")[1] + " = new Graph();\n";
       }
     }
 
@@ -70,10 +70,10 @@ export function getRequiredBoxes(inputString) {
           otherVariables1 += "let " + variable + ";\n";
         }
         else if (variable.indexOf("Matrix") !== -1) {
-          otherVariables1 += "const " + variable.split(" ")[1] + " = new Matrix;\n";
+          otherVariables1 += "const " + variable.split(" ")[1] + " = new Matrix();\n";
         }
         else {
-          otherVariables1 += "const " + variable.split(" ")[1] + " = new Graph;\n";
+          otherVariables1 += "const " + variable.split(" ")[1] + " = new Graph();\n";
         }
       }
     }
