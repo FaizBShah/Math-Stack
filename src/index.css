@@ -3,9 +3,9 @@
 :root {
   --color-primary: #FFC400;
   --color-secondary: #444;
-  font-family: 'Audiowide', cursive;
+  /*font-family: 'Audiowide', cursive;
   font-family: 'Roboto', sans-serif;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Ubuntu', sans-serif;*/
 }
 body {
   margin: 0;
@@ -41,6 +41,21 @@ h5 {
 
 .signup {
   margin-top: 32px;
+}
+
+.nav-link {
+  color: var(--color-secondary);
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  display: flex;
+}
+
+.nav-link i {
+  padding: 4px 10px;
+}
+
+button {
+  cursor: pointer;
 }
 
 .run-btn {
