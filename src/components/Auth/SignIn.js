@@ -22,7 +22,7 @@ class SignIn extends Component {
 
   handleGoogleSubmit = (e) => {
     e.preventDefault();
-    signInGoogle();
+    this.props.signInGoogle();
   }
   render() {
 
@@ -81,7 +81,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: (creds) => dispatch(signIn(creds))
+    signIn: (creds) => dispatch(signIn(creds)),
+    signInGoogle: () => dispatch(signInGoogle())
   }
 }
 
