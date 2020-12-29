@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { signIn } from '../../store/Actions/authActions'
+import { signIn, signInGoogle } from '../../store/Actions/authActions'
 import { Redirect } from 'react-router-dom'
+import { findAllByPlaceholderText } from '@testing-library/react'
 
 class SignIn extends Component {
   state = {
@@ -18,24 +19,28 @@ class SignIn extends Component {
     e.preventDefault();
     this.props.signIn(this.state)
   }
+
+  handleGoogleSubmit = (e) => {
+    e.preventDefault();
+    signInGoogle();
+  }
   render() {
 
     const { authError, auth } = this.props;
-    if (auth.uid) return <Redirect to='/' /> 
+    if (auth.uid) return <Redirect to='/' />
 
     return (
       <div className="container">
 
-        <div className="row form-area card margin-top-80">
-          <div className="col m6" id="bg-login"><img src="./assets/img/kit/login_bg.png" alt="login-bg" className="hide-on-small-only"/></div>
+        <div className="row card login">
+          <div className="col m6" id="bg-login"><img src="./assets/img/login-bg.png" alt="login-bg" className="hide-on-small-only" /></div>
 
           <div className="col m6" id="bg-content">
 
             <form onSubmit={this.handleSubmit}>
 
               <div className="center">
-                <img src="./assets/img/logos/dsc_header_light.png" alt="dsc_logo"/>
-                <h4 className="tag_details flow-text grey-text text-lighten-3"><b>Math Stack Login</b></h4>
+                <h5 className="flow-text">Login</h5>
               </div>
 
               <div className="input-field">
@@ -47,24 +52,17 @@ class SignIn extends Component {
                 <label htmlFor="password"><i className="fa fa-lock"></i>   Password</label>
                 <input type="password" id='password' onChange={this.handleChange} required />
               </div>
-
-              <div className="row">
-                <div className="col" id="forgot-btn">
-                  <NavLink to="#" className="blue-text text-accent-3">Forgot Password?</NavLink>
-                </div>
-                <div className="col right">
-                  <div className="input-field">
-                    <button className="btn blue accent-3 z-depth-0 right-align" id="login-btn">Login</button>
-                  </div>
-                </div>
-              </div>
-
+              <button className="btn-thm" id="login-btn">Login</button>
               
             </form>
-            <div className="center red-text">
-              { authError ? <p>{authError}</p> : null }
-            </div>
 
+            <div className="center red-text">
+              {authError ? <p>{authError}</p> : null}
+            </div>
+            <ul>
+              <li><a href="#" className="btn-thm" id="google-btn" onClick={this.handleGoogleSubmit}>Login with Google</a></li>
+            </ul>
+            <Link to="/signup" className="signup">Don't have a account? <b>Sign Up</b></Link> 
           </div>
         </div>
 
@@ -75,7 +73,7 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
 
-  return{
+  return {
     authError: state.auth.authError,
     auth: state.firebase.auth
   }

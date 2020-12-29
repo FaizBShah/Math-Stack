@@ -42,7 +42,7 @@ class Dashboard extends Component {
           //value={this.state.script}
           onChange={this.setScript}
         />
-        <button onClick={this.onClick} style={{ padding: "5px", margin: "5px", width: "150px" }}>Run</button>
+        <button onClick={this.onClick} className="run-btn"><i class="fa fa-play-circle"></i>Run</button>
       </div>
     )
   }

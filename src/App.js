@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Dashboard from './components/Dashboard/Dashboard'
 import Navbar from './components/Navbar/Navbar'
 import SignIn from './components/Auth/SignIn'
+import SignUp from "./components/Auth/SignUp";
 import './App.css';
 import {getRequiredBoxes, executeScript} from './scripts/compilerScript';
 
@@ -18,6 +19,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Dashboard} />
             <Route path='/signin' component={SignIn} />
+            <Route path='/signup' component={SignUp} />
           </Switch>
         </div>
       </BrowserRouter>
