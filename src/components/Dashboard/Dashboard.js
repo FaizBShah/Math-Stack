@@ -9,7 +9,7 @@ const Loader = () => <div><div className="progress blue accent-3"><div className
 
 class Dashboard extends Component {
   state = {
-    script: "ivar Matrix m, Matrix n;\nm.setSize(2, 2);\nm.setValue(0, 0, 1);\nm.setValue(0, 1, 7);\nm.setValue(1, 0, 14);\nconsole.log(m.getMatrix());\nn.setSize(2, 2);\nn.setValue(0, 1, 5);\nn.setValue(0, 0, 2);\nn.setValue(1, 0, -3);\nn.setValue(1, 1, 9);\nconsole.log(n.getMatrix());\nconsole.log(m.addMatrix(n).getMatrix());\nconsole.log(m.subtractMatrix(n).getMatrix());\nconsole.log(m.multiplyMatrixBySingle(10).getMatrix());",
+    script: "ivar Matrix m, Matrix n,x;\nm.setSize(2, 2);\nm.setValue(0, 0, 1);\nm.setValue(0, 1, 7);\nm.setValue(1, 0, 14);\nshow(\"Matrix m\",m);\nn.setSize(2, 2);\nn.setValue(0, 1, 5);\nn.setValue(0, 0, 2);\nn.setValue(1, 0, -3);\nn.setValue(1, 1, 9);\nshow(\"Matrix n\",n)\nshow(\"m + n\",m.addMatrix(n));\nshow(\"m-n\",m.subtractMatrix(n));\nshow(\"m*10\",m.multiplyMatrixBySingle(10));\nshow(\"X*X\",x*x);",
     takingInput: false,
     inputs: null,
     tempScript: "",
@@ -34,6 +34,9 @@ class Dashboard extends Component {
       this.setState({inputs,tempScript: boxes.tempScript});
       this.setState({takingInput: true});
       this.setState({output: "Change Values to run script"});
+      setTimeout(()=>{
+        this.executeScript(this.getInputs(inputs),boxes.tempScript);
+      },0)
     }
     else {
       this.executeScript([], boxes.tempScript);
@@ -47,7 +50,6 @@ class Dashboard extends Component {
     newInputs[i].value = parseFloat(e.target.value);
     this.setState({inputs: newInputs});
     //since setState is asynchronous thats why using newInputs
-    console.log("Inputs",this.getInputs(newInputs))
     this.executeScript(this.getInputs(newInputs), this.state.tempScript);
   }
 

@@ -26,7 +26,7 @@ class CustomCanvas {
   }
 
   showVariable(label, x) {
-    var html = `${label}${x ? ' = ' +x: ''}`
+    var html = `${label}${x || x===0 ? ' = ' +x: ''}`
     const showEvent = new ShowEvent(html);
     window.dispatchEvent(showEvent);
   }
