@@ -20,79 +20,83 @@ const canvas = new CustomCanvas();
 
 // Returns the no. of input boxes required to be made, and the associated variables with each box
 export function getRequiredBoxes(inputString) {
-  inputString.replace(/\n/g, " ");
-  const numberVariables = [];
-  let otherVariables = "";
-  let otherVariables1 = "";
-  let firstLinePos = inputString.indexOf(";");
-  let firstLine = inputString.substring(0, firstLinePos);
-  let secondLinePos = inputString.substring(firstLinePos + 1).indexOf(";");
-  let secondLine = inputString.substring(firstLinePos + 1).substring(0, secondLinePos);
+  try {
+    inputString.replace(/\n/g, " ");
+    const numberVariables = [];
+    let otherVariables = "";
+    let otherVariables1 = "";
+    let firstLinePos = inputString.indexOf(";");
+    let firstLine = inputString.substring(0, firstLinePos);
+    let secondLinePos = inputString.substring(firstLinePos + 1).indexOf(";");
+    let secondLine = inputString.substring(firstLinePos + 1).substring(0, secondLinePos);
 
-  const firstLineLength = firstLine.length;
-  firstLine = firstLine.trim();
+    const firstLineLength = firstLine.length;
+    firstLine = firstLine.trim();
 
 
-  if (firstLine.indexOf("ivar") === 0) {
-    let allVariables = firstLine.substring(5).split(",");
+    if (firstLine.indexOf("ivar") === 0) {
+      let allVariables = firstLine.substring(5).split(",");
 
-    for(let i = 0; i < allVariables.length; i++) {
-      let variable = allVariables[i];
-
-      variable = variable.trim();
-
-      if (variable.indexOf("Matrix") === -1 && variable.indexOf("Graph") === -1) {
-        numberVariables.push(variable);
-      }
-      else if (variable.indexOf("Matrix") !== -1) {
-        otherVariables += "const " + variable.split(" ")[1] + " = new Matrix();\n";
-      }
-      else {
-        otherVariables += "const " + variable.split(" ")[1] + " = new Graph();\n";
-      }
-    }
-
-    secondLine = secondLine.trim();
-
-    var secLineExists = false;
-
-    if (secondLine.indexOf("var") === 0) {
-      secLineExists = true;
-
-      let secondVariables = secondLine.substring(4).split(",");
-
-      for(let i = 0; i < secondVariables.length; i++) {
-        let variable = secondVariables[i];
+      for(let i = 0; i < allVariables.length; i++) {
+        let variable = allVariables[i];
 
         variable = variable.trim();
-  
+
         if (variable.indexOf("Matrix") === -1 && variable.indexOf("Graph") === -1) {
-          otherVariables1 += "let " + variable + ";\n";
+          numberVariables.push(variable);
         }
         else if (variable.indexOf("Matrix") !== -1) {
-          otherVariables1 += "const " + variable.split(" ")[1] + " = new Matrix();\n";
+          otherVariables += "const " + variable.split(" ")[1] + " = new Matrix();\n";
         }
         else {
-          otherVariables1 += "const " + variable.split(" ")[1] + " = new Graph();\n";
+          otherVariables += "const " + variable.split(" ")[1] + " = new Graph();\n";
         }
       }
+
+      secondLine = secondLine.trim();
+
+      var secLineExists = false;
+
+      if (secondLine.indexOf("var") === 0) {
+        secLineExists = true;
+
+        let secondVariables = secondLine.substring(4).split(",");
+
+        for(let i = 0; i < secondVariables.length; i++) {
+          let variable = secondVariables[i];
+
+          variable = variable.trim();
+    
+          if (variable.indexOf("Matrix") === -1 && variable.indexOf("Graph") === -1) {
+            otherVariables1 += "let " + variable + ";\n";
+          }
+          else if (variable.indexOf("Matrix") !== -1) {
+            otherVariables1 += "const " + variable.split(" ")[1] + " = new Matrix();\n";
+          }
+          else {
+            otherVariables1 += "const " + variable.split(" ")[1] + " = new Graph();\n";
+          }
+        }
+      }
+
+      if (!secLineExists) {
+        secondLinePos = -1;
+      }
+
+      tempScript = otherVariables + otherVariables1 + inputString.substring(firstLineLength + secondLinePos + 2);
+      const len = numberVariables.length;
+
+      return {
+        len,
+        numberVariables,
+        tempScript
+      };
     }
-
-    if (!secLineExists) {
-      secondLinePos = -1;
+    else {
+      return null;
     }
-
-    tempScript = otherVariables + otherVariables1 + inputString.substring(firstLineLength + secondLinePos + 2);
-    const len = numberVariables.length;
-
-    return {
-      len,
-      numberVariables,
-      tempScript
-    };
-  }
-  else {
-    return null;
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -111,8 +115,12 @@ export function executeScript(inpVariables, script) {
   validScript = temp + script;
   console.log(validScript);
 
-  // eslint-disable-next-line no-eval
-  eval(validScript);
+  try {
+    // eslint-disable-next-line no-eval
+    eval(validScript);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // The function to display the variable in the UI
