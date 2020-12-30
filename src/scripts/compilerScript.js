@@ -116,11 +116,11 @@ export function executeScript(inpVariables, script) {
 }
 
 // The function to display the variable in the UI
-export function show(x) {
+export function show(label, x) {
   if (x instanceof Matrix) {
-    x.showMatrix(canvas);
+    x.showMatrix(canvas, label);
   }
   else {
-    canvas.showVariable(x);
+    canvas.showVariable(x, label);
   }
 }

@@ -7,7 +7,7 @@ class CustomCanvas {
 
   }
 
-  showMatrix(matrix, rows, cols) {
+  showMatrix(label, matrix, rows, cols) {
     var table = `<table>`
     for (var i = 0; i < rows; i++) {
       table += `<tr>`;
@@ -21,7 +21,7 @@ class CustomCanvas {
     document.body.innerHTML = document.body.innerHTML + table;
   }
 
-  showVariable(x) {
+  showVariable(label, x) {
     document.body.innerHTML = document.body.innerHTML + x;
   }
 }

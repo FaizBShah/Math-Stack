@@ -44,8 +44,8 @@ class Matrix {
   }
 
   // Shows the matrix to the UI with given Canvas object
-  showMatrix(canvasObj) {
-    canvasObj.showMatrix(this.getMatrix(), this.getRows(), this.getColumns());
+  showMatrix(canvasObj, label) {
+    canvasObj.showMatrix(label, this.getMatrix(), this.getRows(), this.getColumns());
   }
 
   // Add a matrix m to the current matrix
