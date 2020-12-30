@@ -18,11 +18,12 @@ class CustomCanvas {
     }
     table += `</table>`;
 
-    document.body.innerHTML = document.body.innerHTML + table;
+    document.body.innerHTML = document.body.innerHTML + `${label}<br>` + table;
   }
 
   showVariable(label, x) {
-    document.body.innerHTML = document.body.innerHTML + x;
+    var html = `${label} = ${x}`
+    document.body.innerHTML = document.body.innerHTML + html;
   }
 }
 
