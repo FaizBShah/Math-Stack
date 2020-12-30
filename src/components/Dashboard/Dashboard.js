@@ -110,7 +110,7 @@ class Dashboard extends Component {
           <div style={{textAlign: "left", marginTop: "2rem"}}>
             <strong>OUTPUT:</strong>
           </div>
-          <div style={{border: "2px solid black", borderRadius: "5px", boxShadow: "inset 0 0 20px 0 #bdbdbd", minHeight: "200px", width: "80%", marginTop: "0.5rem", padding: "10px", textAlign: "left",  whiteSpace: "pre-wrap", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", fontSize: "24px", fontWeight: "bold"}} dangerouslySetInnerHTML={{__html: this.state.output }}>
+          <div style={{border: "2px solid black", borderRadius: "5px", boxShadow: "inset 0 0 20px 0 #bdbdbd", minHeight: "200px", width: "80%", marginTop: "0.5rem", padding: "10px", textAlign: "left",  whiteSpace: "pre-wrap", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", fontSize: "24px", fontWeight: "bold", overflowX:"auto"}} dangerouslySetInnerHTML={{__html: this.state.output }}>
 
           </div>
         </div>
