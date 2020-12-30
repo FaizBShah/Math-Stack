@@ -106,6 +106,38 @@ class Matrix {
 
     return res;
   }
+
+  // Multiply this matrix with another matrix
+  multiplyMatrix(m) {
+    const row1 = this.getRows();
+    const col1 = this.getColumns();
+
+    const row2 = m.getRows();
+    const col2 = m.getColumns();
+
+    if (col1 !== row2) {
+      return null;
+    }
+
+    const res = new Matrix();
+
+    res.setSize(row1, col2);
+
+    let i, j;
+
+    for (i = 0;i < row1;i++) {
+      for(j=0;j<col2;j++) {
+        let sum = 0;
+        let k;
+        for (k=0;k<row1;k++) {
+          sum += this.getValue(i, k) * m.getValue(k, j);
+        }
+        res.setValue(i, j, sum);
+      }
+    }
+
+    return res;
+  }
 }
 
 window.Matrix = Matrix;
