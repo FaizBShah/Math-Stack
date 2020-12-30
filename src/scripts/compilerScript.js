@@ -97,6 +97,7 @@ export function getRequiredBoxes(inputString) {
     }
   } catch (error) {
     console.log(error);
+    show("Error:", "Invalid Syntax or Runtime Error");
   }
 }
 
@@ -115,6 +116,7 @@ export function executeScript(inpVariables, script) {
   for (let i=0;i<checks.length;i++) {
     if (script.indexOf(checks[i]) !== -1) {
       console.log("Invalid syntax");
+      show("Error:", "Invalid Syntax or Runtime Error");
       return null;
     }
   }
@@ -129,6 +131,7 @@ export function executeScript(inpVariables, script) {
     eval(validScript);
   } catch (error) {
     console.log(error);
+    show("Error:", "Invalid Syntax or Runtime Error");
   }
 }
 
@@ -138,6 +141,6 @@ export function show(label, x) {
     x.showMatrix(canvas, label);
   }
   else {
-    canvas.showVariable(x, label);
+    canvas.showVariable(label, x);
   }
 }
