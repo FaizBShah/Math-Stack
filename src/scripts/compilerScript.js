@@ -110,6 +110,15 @@ export function executeScript(inpVariables, script) {
     temp += str;
   }
 
+  const checks = ["console.log(", "cache", "Cache", "cookie", "Cookie", "firebase", "sql", "Sql", "SQL", "secret", " try", " catch", " finally", " var", "fetch", "then", "=>", "= >", "function", "instanceof", "===", "!==", "status", "length", "substring", "substr", "replace", ".map", ".forEach"];
+
+  for (let i=0;i<checks.length;i++) {
+    if (script.indexOf(checks[i]) !== -1) {
+      console.log("Invalid syntax");
+      return null;
+    }
+  }
+
   var validScript = "2 + 2";
 
   validScript = temp + script;
