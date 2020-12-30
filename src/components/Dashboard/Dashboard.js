@@ -39,7 +39,7 @@ class Dashboard extends Component {
       <div className="App" style={{ display: "flex", flexDirection: "column", margin: "5px" }}>
         <textarea rows="12" id="script"
           style={{ width: "80%" }}
-          //value={this.state.script}
+          value={this.state.script}
           onChange={this.setScript}
         />
         <button onClick={this.onClick} className="run-btn"><i class="fa fa-play-circle"></i>Run</button>
