@@ -20,13 +20,13 @@ class CustomCanvas {
     }
     table += `</table>`;
 
-    const html = `${label}<br/>` + table;
+    const html = `${label}\n` + table;
     const showEvent = new ShowEvent(html);
     window.dispatchEvent(showEvent);
   }
 
   showVariable(label, x) {
-    var html = `${label} = ${x}`
+    var html = `${label}${x ? ' = ' +x: ''}`
     const showEvent = new ShowEvent(html);
     window.dispatchEvent(showEvent);
   }

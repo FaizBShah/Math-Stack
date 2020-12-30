@@ -61,9 +61,8 @@ class Dashboard extends Component {
   }
 
   show = (e) =>{
-    console.log(e.detail);
     setTimeout(()=>{
-      this.setState({output: this.state.output+"\n"+e.detail})
+      this.setState({output: this.state.output+"<div style='width: 100%; border: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column'>"+e.detail+"</div>"})
     },0)
   }
   componentDidMount(){
@@ -109,7 +108,7 @@ class Dashboard extends Component {
           <div style={{textAlign: "left", marginTop: "2rem"}}>
             <strong>OUTPUT:</strong>
           </div>
-          <div style={{border: "2px solid black", borderRadius: "5px", boxShadow: "inset 0 0 20px 0 #bdbdbd", minHeight: "200px", width: "80%", marginTop: "0.5rem", padding: "10px", textAlign: "left",  whiteSpace: "pre-wrap", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "24px", fontWeight: "bold"}} dangerouslySetInnerHTML={{__html: this.state.output }}>
+          <div style={{border: "2px solid black", borderRadius: "5px", boxShadow: "inset 0 0 20px 0 #bdbdbd", minHeight: "200px", width: "80%", marginTop: "0.5rem", padding: "10px", textAlign: "left",  whiteSpace: "pre-wrap", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", fontSize: "24px", fontWeight: "bold"}} dangerouslySetInnerHTML={{__html: this.state.output }}>
 
           </div>
         </div>
