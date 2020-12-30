@@ -130,7 +130,7 @@ export function executeScript(inpVariables, script) {
     // eslint-disable-next-line no-eval
     eval(validScript);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     show("Error:", "Invalid Syntax or Runtime Error");
   }
 }

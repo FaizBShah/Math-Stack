@@ -1,3 +1,5 @@
+import ShowEvent from "./ShowEvent";
+
 //renamed as Canvas is conflicting with global Canvas class
 class CustomCanvas {
 
@@ -18,12 +20,15 @@ class CustomCanvas {
     }
     table += `</table>`;
 
-    document.body.innerHTML = document.body.innerHTML + `${label}<br>` + table;
+    const html = `${label}<br/>` + table;
+    const showEvent = new ShowEvent(html);
+    window.dispatchEvent(showEvent);
   }
 
   showVariable(label, x) {
     var html = `${label} = ${x}`
-    document.body.innerHTML = document.body.innerHTML + html;
+    const showEvent = new ShowEvent(html);
+    window.dispatchEvent(showEvent);
   }
 }
 
